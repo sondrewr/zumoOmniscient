@@ -1,7 +1,7 @@
 //Variables for functions:
 unsigned int sensorValues[QTR_PIN];   //Store all the QTR-detector values in an array
 unsigned int frontDistance;           //Stores the distance measured by the front-distance sensor
-unsigned int rearDistance;            //For the rear-distance sensor
+unsigned int rearDistance = 100;            //For the rear-distance sensor
 
 //Including classes:
 ZumoBuzzer buzzer;
@@ -101,4 +101,5 @@ float getRearDistance()
 
 void flip() {
     motors.setSpeeds(-ATTACK_SPEED, ATTACK_SPEED);
+    delay(400);
 }

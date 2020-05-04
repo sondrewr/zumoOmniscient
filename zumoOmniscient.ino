@@ -16,6 +16,7 @@ void setup() {
 void loop() {
   sensors.read(sensorValues);
   frontDistance = frontDistSensor.getDist();  //Get frontDistance from sensor values
+  rearDistance = getRearDistance();
   
   Serial.write("frontDistance = ");      //Print frontDistance to Serial for monitoring
   Serial.print(frontDistance);
@@ -33,7 +34,7 @@ void loop() {
   else if (frontDistance < ATTACK_RANGE) {
     attack(ATTACK_TIME);
   }
-  else if (getRearDistance()) {
+  else if (rearDistance < FLIP_RANGE) {
     flip();
   }
 }
