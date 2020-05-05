@@ -18,13 +18,13 @@ void loop() {
   sensors.read(sensorValues);
   frontDistance = frontDistSensor.getDist();  //Get frontDistance from sensor values
   rearDistance = sonar.ping_cm();
-  
-  //Serial.write("frontDistance = ");      //Print frontDistance to Serial for monitoring
-  //Serial.print(frontDistance);
+ 
+  Serial.write("frontDistance = ");      //Print frontDistance to Serial for monitoring
+  Serial.print(frontDistance);
   Serial.write("rearDistance = ");
   Serial.print(rearDistance);
-  //Serial.write(" Border = ");
-  //Serial.print(borderDetect());
+  Serial.write(" Border = ");
+  Serial.print(borderDetect());
   Serial.println(" ");
 
   goForward();        //In this tactic the robot starts with driving straight
@@ -35,7 +35,7 @@ void loop() {
   else if (frontDistance < ATTACK_RANGE) {
     attack(ATTACK_TIME);
   }
-  else if ((rearDistance < FLIP_RANGE)&& (frontDistance > ATTACK_RANGE)) {
+  else if ((rearDistance < FLIP_RANGE)&& (rearDistance != 0)) {
     flip();
   }
 }

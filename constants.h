@@ -8,7 +8,7 @@ const byte MEDIAN_FILTER_WINDOW_SIZE = 5;    //Window size of the median filter 
 
 //Threshold:
 const int QTR_THRESHOLD = 1500;           //microseconds (default value @1500)
-const int ATTACK_RANGE = 300;             //threshold for IR sensor, this determines how close the oppnent must be for an attack
+const int ATTACK_RANGE = 600;             //threshold for IR sensor, this determines how close the oppnent must be for an attack
 const int MAX_REAR_DIST = 400;            //max range for rear-distance sensor
 const int FLIP_RANGE = 30;                //range threshold for rear enemy detection
 
