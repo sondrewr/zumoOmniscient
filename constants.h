@@ -9,15 +9,19 @@ const byte MEDIAN_FILTER_WINDOW_SIZE = 5;    //Window size of the median filter 
 //Threshold:
 const int QTR_THRESHOLD = 1500;           //microseconds (default value @1500)
 const int ATTACK_RANGE = 300;             //threshold for IR sensor, this determines how close the oppnent must be for an attack
-const int FLIP_RANGE = 15;
+const int MAX_REAR_DIST = 400;            //max range for rear-distance sensor
+const int FLIP_RANGE = 30;                //range threshold for rear enemy detection
+
+NewPing sonar(TRIG_PIN, ECHO_PIN, MAX_REAR_DIST); // NewPing setup of pins and maximum distance.
 
 // Speed configurations:
 const int REVERSE_SPEED = 200;  // (0 is stopped, 400 is full speed)
-const int TURN_SPEED = 200;
+const int TURN_SPEED = 250;
 const int FORWARD_SPEED = 200;
 const int ATTACK_SPEED = 400;
 
-// Time configurations:
-const int REVERSE_TIME = 200; //ms
-const int TURN_TIME = 400;    //ms
-const int ATTACK_TIME = 75;  //ms
+// Time configurations in ms:
+const int REVERSE_TIME = 200;
+const int TURN_TIME = 450; 
+const int ATTACK_TIME = 75;
+const int FLIP_TIME = 500;

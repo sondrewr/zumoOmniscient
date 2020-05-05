@@ -1,6 +1,7 @@
 #include <Wire.h>         // Include needed libraries
 #include <ZumoShield.h>
 #include <SharpDistSensor.h>
+#include <NewPing.h>
 #include "constants.h"    // Header file containing all constants and thresholds
 #include "functions.h"    // Header file containing all functions and necessary variables
 
@@ -16,17 +17,17 @@ void setup() {
 void loop() {
   sensors.read(sensorValues);
   frontDistance = frontDistSensor.getDist();  //Get frontDistance from sensor values
-  rearDistance = getRearDistance();
+  rearDistance = sonar.ping_cm();
   
-  Serial.write("frontDistance = ");      //Print frontDistance to Serial for monitoring
-  Serial.print(frontDistance);
+  //Serial.write("frontDistance = ");      //Print frontDistance to Serial for monitoring
+  //Serial.print(frontDistance);
   Serial.write("rearDistance = ");
   Serial.print(rearDistance);
-  Serial.write(" Border = ");
-  Serial.print(borderDetect());
+  //Serial.write(" Border = ");
+  //Serial.print(borderDetect());
   Serial.println(" ");
 
-  goForward();        //In this tactic the robot starts with driving straight forward
+  goForward();        //In this tactic the robot starts with driving straight
 
   if (borderDetect()) {
     borderAvoid();
@@ -34,7 +35,7 @@ void loop() {
   else if (frontDistance < ATTACK_RANGE) {
     attack(ATTACK_TIME);
   }
-  else if (rearDistance < FLIP_RANGE) {
+  else if ((rearDistance < FLIP_RANGE)&& (frontDistance > ATTACK_RANGE)) {
     flip();
   }
 }
