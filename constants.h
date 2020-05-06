@@ -24,4 +24,4 @@ const int ATTACK_SPEED = 400;
 const int REVERSE_TIME = 200;
 const int TURN_TIME = 450; 
 const int ATTACK_TIME = 75;
-const int FLIP_TIME = 500;
+const int FLIP_TIME = 450;
