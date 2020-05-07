@@ -1,9 +1,9 @@
 //Variables for functions:
 unsigned int sensorValues[QTR_PIN];   //Store all the QTR-detector values in an array
 unsigned int frontDistance;           //Stores the distance measured by the front-distance sensor
-unsigned int rearDistance = 100;            //For the rear-distance sensor
+unsigned int rearDistance;            //For the rear-distance sensor
 
-//Including classes:
+//Including classes and objects:
 ZumoBuzzer buzzer;
 ZumoMotors motors;
 Pushbutton button(ZUMO_BUTTON); // pushbutton on pin 12
@@ -25,7 +25,7 @@ bool borderDetect() {
   }
 }
 
-// Set motor at attack speed for an amount of time:
+// Set motor at attack-speed for an amount of time:
 void attack(int time) {
   Serial.println("Attacking");
   motors.setSpeeds(ATTACK_SPEED, ATTACK_SPEED);
@@ -37,7 +37,7 @@ void borderAvoid() {
   Serial.println("Avoiding border");
     if (sensorValues[0] < QTR_THRESHOLD)
   {
-    // if leftmost sensor detects line, reverse and turn to the right
+    // if leftmost sensor detects line, reverse and turn to the right:
     motors.setSpeeds(-REVERSE_SPEED, -REVERSE_SPEED);
     delay(REVERSE_TIME);
     motors.setSpeeds(TURN_SPEED, -TURN_SPEED);
@@ -46,7 +46,7 @@ void borderAvoid() {
   }
   else if (sensorValues[5] < QTR_THRESHOLD)
   {
-    // if rightmost sensor detects line, reverse and turn to the left
+    // if rightmost sensor detects line, reverse and turn to the left:
     motors.setSpeeds(-REVERSE_SPEED, -REVERSE_SPEED);
     delay(REVERSE_TIME);
     motors.setSpeeds(-TURN_SPEED, TURN_SPEED);
@@ -55,7 +55,7 @@ void borderAvoid() {
   }
 }
 
-//Waiting for button to be pressed and starting countdown:
+//Start countdown when button is pressed:
 void pressButtonToStartCountDown()
 {
   //play audible starttune
@@ -80,6 +80,7 @@ void pressButtonToStartCountDown()
   delay(1000);
 }
 
+// Function for turning 180 degrees
 void flip() {
   Serial.println("Flipping");
   motors.setSpeeds(-ATTACK_SPEED, ATTACK_SPEED);
